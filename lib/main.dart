@@ -49,7 +49,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+
   String _currentFortune = "";
 
   final _fortuneList =[
@@ -70,46 +70,40 @@ class _MyHomePageState extends State<MyHomePage> {
 
   }
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
-
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text("Flutter Demo Home Page"),
+        title: Text("Fortune cookie app"),
       ),
       body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-
+        child: Column (
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
               "Your Fortune is:",
+              style: TextStyle(fontSize: 29, fontWeight: FontWeight.bold)
             ),
-            Text(
-              '${_currentFortune}',
-              style: Theme.of(context).textTheme.headlineMedium,
+            Card(
+              child:Padding(
+                padding: const EdgeInsets.all(38.0),
+                child: Text(
+                  '${_currentFortune}',
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+              ),
             ),
+            ElevatedButton(onPressed: _randomFortune, child: Text("Get Fortune")),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _randomFortune,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: _randomFortune,
+      //   tooltip: 'Increment',
+      //   child: const Icon(Icons.add),
+      // ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
